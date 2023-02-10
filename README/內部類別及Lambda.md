@@ -2,6 +2,7 @@
 **內部類別**
 **Lambda**
 **函數式介面四大類型**
+<br>
 參考資料：
 掌握Java SE11程式設計，作者；陳錦輝
 [Java8 四大函数式接口](https://www.kancloud.cn/hemiao3000/java-note/1939083)
@@ -32,14 +33,12 @@
 
 一般類別宣告內部類別之物件變數語法：
 `outerClass.innerClass objName;`
-`outerClass.innerClass obj = (new outerClass(para)).new inner Class(para) ;`
+`outerClass.innerClass obj = (new outerClass(param)).new inner Class(param) ;`
 
 <div STYLE="page-break-after: always;"></div>
 
 **範例**
 ```java
-package ch1;
-
 public class ExampleClass01 {
 
 	public static void main(String[] args) {
@@ -79,8 +78,6 @@ class CMyOuterClass {
 ### 透過外部類別修改內部類別實體物件參數範例
 
 ```java
-package ch1;
-
 public class ExampleClass02 {
 
 	public static void main(String[] args) {
@@ -128,8 +125,6 @@ method若被宣告為static，則無法存取非static的成員，若要存取�
 1. 內部類別宣告為static。
 2. 外部類別的建構子建立內部類別之物件。
 ```java
-package ch1;
-
 public class ExampleClass03 {
 	public static void main(String[] args) {
 		ExampleClass03 obj = new ExampleClass03();
@@ -163,8 +158,6 @@ public class ExampleClass03 {
 
 <font color=red>區域內部類別</font>定義於某一方法(method)內，視作某一方法內部類別，故該生命週期只限於某一方法內。
 ```java
-package ch1;
-
 public class ExampleClass04 {
 
 	public static void main(String[] args) {
@@ -198,9 +191,9 @@ class CMyOuterClass04
 故，可以視為一個繼承或實作。
 語法如下：
 ```java
-Method 名稱 (para)
+Method 名稱 (param)
 {
-    類別名稱 物件名稱 = new [類別名稱(para)]
+    類別名稱 物件名稱 = new [類別名稱(param)]
     {
         '匿名類別實作區'
     };
@@ -234,8 +227,6 @@ public class ExampleClass08 {
 **基本範例**
 
 ```java
-package ch1;
-
 public class CMyOuterClass05 {
 	public static void main(String[] args) {
 		CB objX = new CB();
@@ -290,10 +281,10 @@ class CB{
 
 語法如下：
 ```java
-Method 名稱 (para)
+Method 名稱 (param)
 {
     (
-        new [類別名稱(para)]
+        new [類別名稱(param)]
         {
             '匿名類別實作區'
             '新增函式宣告'
@@ -305,7 +296,6 @@ Method 名稱 (para)
 **範例**
 
 ```java
-package ch1;
 public class ExampleClass06 {
 	public static void main(String[] args) {
 		CB06 obj = new CB06();
@@ -335,8 +325,6 @@ class CB06 {
 
 亦可寫作
 ```java
-package ch1;
-
 public class ExampleClass06 {
 	public static void main(String[] args) {
 		CB06 obj = new CB06();
@@ -359,8 +347,6 @@ class CB06 {
 
 ### 匿名類別函式介面實作
 ```java
-package ch1;
-
 public class ExampleClass07 {
 
 	public static void main(String[] args) {
@@ -371,7 +357,7 @@ public class ExampleClass07 {
 		list.add("eton");
 		list.add("windows");
 		Collections.sort(list, 
-			new Comparator<String>() {
+			new Comparamtor<String>() {
 			public int compare(String o1, String o2) {
 				if (o1.length() < o2.length())
 					return -1;
@@ -398,8 +384,6 @@ public class ExampleClass07 {
 透過註記<font color=blue>@FunctionalInterface</font>，只要介面只有一個方法，仍然是函數式介面。
 
 ```java
-package lambdaclass;
-
 public class ExampleLabdaCH1 {
 	public static void main(String[] args) {
 		List<String> objList = new ArrayList<String>();
@@ -425,8 +409,6 @@ Lambda語法架構分三個部分：
 3. 程式碼區塊：如果只有一個敘述，不需要用<font color=blue>{}</font>，如果只需一個return則可省略。
 
 ```java
-package lambdaclass;
-
 public class ExampleLabdaCH2 {
 	public static void main(String[] args) {
 		List<String> objList = new ArrayList<String>();
@@ -444,8 +426,6 @@ public class ExampleLabdaCH2 {
 ## 函數式介面
 抽象方法或介面由工程師實作，可透過lambda實作。
 ```java
-package lambdaclass;
-
 @FunctionalInterface
 interface IDuplicate {
 	String duplicateOperateration(String str);
@@ -481,8 +461,6 @@ class CPrint {
 **lambda實作執行緒**
 
 ```java
-package lambdaclass;
-
 public class ExampleLabdaCH4 {
 	public static void main(String[] args) {
 		Thread obj = new Thread((Runnable) () -> {
@@ -506,8 +484,6 @@ public class ExampleLabdaCH4 {
 <div STYLE="page-break-after: always;"></div>
 
 ```java
-package lambdaclass;
-
 public class ExampleLabdaCH5 {
 	public static void main(String args[]) {
 		Runnable task1 = () -> {
@@ -618,6 +594,40 @@ public class ExampleLabdaCH7 {
 ```
 **注意：**
 某物件實體方法的參考,不可用靜態方法。
+
+<div STYLE="page-break-after: always;"></div>
+
+### Lambda運算式與類別實體方法的引用
+**語法**
+`類別名稱::實體方法`
+把所有抽象方法應該出現的參數當中的第一個參數當作物件名稱，而第二個之後的參數才是要轉傳到實體方法的參數。
+```java
+public class ExampleLabdaCH9 {
+	@FunctionalInterface
+	interface IMATH {
+		int iAdd(CMATH o, int a,int y);
+	}
+
+	public static void main(String[] args) {
+		ExampleLabdaCH9 exe = new ExampleLabdaCH9();
+		exe.test();
+	}
+
+	public void test() {
+		IMATH obj1 = (CMATH o, int i,int j) -> o.add(i,j);
+		System.out.println(obj1.iAdd(new CMATH(), 11,-7));
+
+		IMATH obj2 = CMATH::add;
+		System.out.println(obj2.iAdd(new CMATH(), 55,66));
+	}
+
+	class CMATH {
+		public int add(int x,int y) {
+			return x+y;
+		}
+	}
+}
+```
 
 <div STYLE="page-break-after: always;"></div>
 
