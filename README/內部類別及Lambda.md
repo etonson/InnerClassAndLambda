@@ -25,9 +25,9 @@
 }
 ```
 **注意**
-1. 內部成員宣告之修飾字僅限於<font color=blue>final、abstract</font>。
+1. 內部成員可宣告之修飾字，但僅限於<font color=blue>final、abstract</font>。
 2. 完整類別名稱為「<font color=blue>Package 名稱.外部類別名稱.內部類別名稱</font>」。
-3. 內部類別名稱可以取用外部類別成員，但勿使用<font color=red>this</font>來讀取外部類別成員，外部類別與內部類別在產生物件實體時，各自傭有屬於自己的this。
+3. 內部類別名稱可以取用外部類別成員，但勿使用<font color=red>this</font>來讀取外部類別成員，外部類別與內部類別在產生物件實體時，各自有屬於自己的this。
 4. 若內部類別非宣告為<font color=blue>static</font>類別時，則不可以宣告或定義<font color=blue>static</font>類別成員。
 
 一般類別宣告內部類別之物件變數語法：

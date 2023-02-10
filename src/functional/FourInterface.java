@@ -31,32 +31,32 @@ public class FourInterface {
 		}
 	}
 
-	class MyInterface {
-		public static void happy(double money, Consumer<Double> consumer) {
-			consumer.accept(money);
+}
+class MyInterface {
+	public static void happy(double money, Consumer<Double> consumer) {
+		consumer.accept(money);
+	}
+	
+	public static List<Integer> getNumList(int num, Supplier<Integer> supplier) {
+		List<Integer> list = new ArrayList<>();
+		for (int i = 0; i < num; i++) {
+			Integer n = supplier.get();
+			list.add(n);
 		}
-
-		public static List<Integer> getNumList(int num, Supplier<Integer> supplier) {
-			List<Integer> list = new ArrayList<>();
-			for (int i = 0; i < num; i++) {
-				Integer n = supplier.get();
-				list.add(n);
+		return list;
+	}
+	
+	public static String strHandler(String str, Function<String, String> function) {
+		return function.apply(str);
+	}
+	
+	public static List<Integer> filterInt(List<Integer> list, Predicate<Integer> pre) {
+		List<Integer> l = new ArrayList<>();
+		for (Integer integer : list) {
+			if (pre.test(integer)) {
+				l.add(integer);
 			}
-			return list;
 		}
-
-		public static String strHandler(String str, Function<String, String> function) {
-			return function.apply(str);
-		}
-
-		public static List<Integer> filterInt(List<Integer> list, Predicate<Integer> pre) {
-			List<Integer> l = new ArrayList<>();
-			for (Integer integer : list) {
-				if (pre.test(integer)) {
-					l.add(integer);
-				}
-			}
-			return l;
-		}
+		return l;
 	}
 }

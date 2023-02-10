@@ -21,10 +21,10 @@ public class ExampleLabdaCH6 {
 		IFABS obj3 = CABS::myabs;
 		System.out.println(obj3.abs(-9));
 	}
+}
 
-	class CABS {
-		public static int myabs(int x) {
-			return x > 0 ? x : (-1) * x;
-		}
+class CABS {
+	public static int myabs(int x) {
+		return x > 0 ? x : (-1) * x;
 	}
 }
